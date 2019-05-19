@@ -1,5 +1,5 @@
 # VoxelWorld
-
+![Startbildschirm](https://github.com/dagr2/VoxelWorld/blob/master/game.PNG)
 VoxelWorld is a Godot testproject for learning
  - How to create dynamic meshes
  - How to implement the MarchingCubes algorithm
