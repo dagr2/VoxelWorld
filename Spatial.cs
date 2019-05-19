@@ -104,7 +104,7 @@ public class Spatial : Godot.Spatial
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-        ((Light)FindNode("Sun")).RotateX(delta / 10);
+        ((Light)FindNode("Sun")).RotateX(delta / 2.0f);
     }
 
     public void AddChilds()
