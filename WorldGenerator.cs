@@ -19,15 +19,23 @@ namespace NeuesSpielc
         public static int Height { get{ return HEIGHT; } set { HEIGHT = value; } }
         public static float Stretch { get; set; } = 0.5f;
 
+        public static float HeightAt(int x, int y)
+        {
+            float r = (1 + noise.GetNoise2d(x * Stretch, y * Stretch)) / 2 * Height;
+            return r;
+        }
+
+        public static float HeightAt(float x, float y)
+        {
+            float r = (1 + noise.GetNoise2d(x * Stretch, y * Stretch)) / 2 * Height;
+            return r;
+        }
+
         public static int GetBlock(int x, int y, int z)
         {
             int res = 0;
-            //float r = Height / 2;
-            float r = (1 + noise.GetNoise2d(x*Stretch, z* Stretch)) / 2 * Height;
-    
-
+            float r = HeightAt(x, z);
             if (y < r || y <= 0) res = 1;
-            //if (x+y+z==0) Godot.GD.Print(x,", ", y,", ", z,", ", r.ToString().Replace(",","."));
             return res;
         }
     }
