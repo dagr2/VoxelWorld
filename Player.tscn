@@ -1,7 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.312168
+radius = 1.03442
+height = 0.002
 
 [sub_resource type="SphereMesh" id=2]
 
@@ -18,13 +19,13 @@ emission_on_uv2 = false
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50825, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, -0.682417, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, -0.31415, 0 )
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 0.22209, 0 )
 current = true
-far = 500.0
+far = 200.0
 
 [node name="RayCast" type="RayCast" parent="Camera"]
 enabled = true

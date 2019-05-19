@@ -23,6 +23,7 @@ var hit
 
 func _ready():
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+    #OS.window_fullscreen =true
     get_parent_spatial().vischunks=VisibleChunks
     translation.y=2+ get_parent_spatial().HeightAt(translation.x,translation.z)
 
@@ -64,9 +65,12 @@ func _process(delta):
     var walk=Vector3(0,0,0)
     var fly=Vector3(0,0,0)
     
+    if Input.is_action_just_pressed("F11"):
+        OS.window_fullscreen = !OS.window_fullscreen
+        
     if Input.is_action_just_pressed("F1"):
         get_parent().AddChilds()
-    
+            
     if Input.is_action_just_pressed("gravity"):
         is_grav = !is_grav
     
@@ -74,7 +78,8 @@ func _process(delta):
         get_tree().quit()
         
     if Input.is_action_pressed("reset"):
-        get_tree().reload_current_scene()
+        translation=Vector3(0,2+ get_parent_spatial().HeightAt(0,0),0)
+        is_flying=true
                 
     if Input.is_action_pressed("ui_up"):
         walk = speed*Vector3(dir.x,0,dir.z)*10

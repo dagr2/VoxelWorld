@@ -35,7 +35,7 @@ Runspeed = 5.0
 Walkspeed = 0.8
 Sprintspeed = 5.0
 Jumppower = 15.0
-VisibleChunks = 5
+VisibleChunks = 4
 
 [node name="Hud" type="Control" parent="."]
 visible = false

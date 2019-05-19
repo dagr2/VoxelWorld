@@ -26,6 +26,11 @@ config/icon="res://icon.png"
 gdscript/warnings/unassigned_variable=false
 gdscript/warnings/unused_variable=false
 
+[display]
+
+window/size/resizable=false
+window/size/fullscreen=true
+
 [input]
 
 ui_left={
@@ -101,6 +106,11 @@ F1={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777244,"unicode":0,"echo":false,"script":null)
  ]
 }
+F11={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777254,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [logging]
 
@@ -109,9 +119,9 @@ file_logging/enable_file_logging=true
 [physics]
 
 3d/physics_engine="GodotPhysics"
+3d/active_soft_world=false
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 environment/default_environment="res://default_env.tres"
 quality/dynamic_fonts/use_oversampling=false

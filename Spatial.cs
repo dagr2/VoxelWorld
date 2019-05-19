@@ -8,7 +8,7 @@ public class Spatial : Godot.Spatial
     Dictionary<string,Chunk> chunks=new Dictionary<string,Chunk>();
     SpatialMaterial mat = (SpatialMaterial)ResourceLoader.Load("res://mat1.tres");
     public int vischunks = 3;
-    public int Height = 128;
+    public int Height = 64;
 
     public float HeightAt(float x, float y)
     {
@@ -20,7 +20,7 @@ public class Spatial : Godot.Spatial
         AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
 
         WorldGenerator.Height = Height;
-        WorldGenerator.Stretch = 0.1f;
+        WorldGenerator.Stretch = 0.09f;
         KinematicBody player = (KinematicBody)FindNode("Player");
         
 
@@ -35,6 +35,7 @@ public class Spatial : Godot.Spatial
         {
             GD.PrintErr(ex.Message);
         }
+
     }
 
     private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -103,7 +104,7 @@ public class Spatial : Godot.Spatial
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
-
+        ((Light)FindNode("Sun")).RotateX(delta / 10);
     }
 
     public void AddChilds()
