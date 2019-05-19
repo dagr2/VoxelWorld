@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="Neues Spielc#"
 run/main_scene="res://Spatial.tscn"
+boot_splash/image="res://game.PNG"
 config/icon="res://icon.png"
 
 [debug]
