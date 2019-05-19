@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.312168
+
+[sub_resource type="SphereMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 2.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CanvasItemMaterial" id=4]
+
+[node name="Player" type="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50825, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, -0.682417, 0 )
+shape = SubResource( 1 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 0.22209, 0 )
+current = true
+
+[node name="RayCast" type="RayCast" parent="Camera"]
+enabled = true
+collide_with_areas = true
+
+[node name="Hitball" type="MeshInstance" parent="."]
+transform = Transform( 0.101777, 0, 0, 0, 0.101777, 0, 0, 0, 0.101777, 0, 0, 0 )
+visible = false
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="Lamp" type="SpotLight" parent="."]
+transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, -0.586433, -0.137092, 0.358381 )
+light_energy = 0.0
+shadow_enabled = true
+spot_range = 100.0
+spot_angle = 33.5408
+
+[node name="Hud" type="Control" parent="."]
+material = SubResource( 4 )
+margin_right = 1024.0
+margin_bottom = 130.0
+
+[node name="Label" type="Label" parent="Hud"]
+margin_right = 1024.0
+margin_bottom = 350.0

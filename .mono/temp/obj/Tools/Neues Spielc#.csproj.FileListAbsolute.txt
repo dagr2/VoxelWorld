@@ -1,0 +1,6 @@
+C:\Users\Daniel\Documents\Neues Spielc#\.mono\temp\obj\Tools\Neues Spielc#.csprojAssemblyReference.cache
+C:\Users\Daniel\Documents\Neues Spielc#\.mono\temp\obj\Tools\Neues Spielc#.csproj.CoreCompileInputs.cache
+C:\Users\Daniel\Documents\Neues Spielc#\.mono\temp\bin\Tools\Neues Spielc#.dll
+C:\Users\Daniel\Documents\Neues Spielc#\.mono\temp\bin\Tools\Neues Spielc#.pdb
+C:\Users\Daniel\Documents\Neues Spielc#\.mono\temp\obj\Tools\Neues Spielc#.dll
+C:\Users\Daniel\Documents\Neues Spielc#\.mono\temp\obj\Tools\Neues Spielc#.pdb
