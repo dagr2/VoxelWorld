@@ -34,4 +34,22 @@ margin_left = 30.0
 margin_top = 500.0
 margin_right = 70.0
 margin_bottom = 514.0
+
+[node name="Button" type="Button" parent="."]
+margin_left = 440.0
+margin_top = 250.0
+margin_right = 620.0
+margin_bottom = 320.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Exit Game"
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 440.0
+margin_top = 330.0
+margin_right = 620.0
+margin_bottom = 370.0
+text = "Toggle fullscreen"
 [connection signal="pressed" from="BtnStart" to="." method="_on_BtnStart_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]

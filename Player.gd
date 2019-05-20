@@ -120,7 +120,8 @@ func _process(delta):
             $Hud.hide()
         else:
             Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-            $Hud.show()
+            get_parent().get_node("IngameMenu").show()
+            
     if not is_on_floor() and is_grav and not is_flying:
         vel=vel+Vector3(0,-Gravity,0)
     else:
