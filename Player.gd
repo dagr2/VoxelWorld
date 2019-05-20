@@ -43,7 +43,7 @@ func _input(event):
     if event is InputEventMouseButton and event.pressed and event.button_index == 1:
         print(hit)
           
-       
+var can_collide=false       
     
 func _process(delta):
     is_sprinting=false
@@ -65,6 +65,10 @@ func _process(delta):
     var walk=Vector3(0,0,0)
     var fly=Vector3(0,0,0)
     
+    
+    if Input.is_action_just_pressed("toggle_collision"):
+      pass
+        
     if Input.is_action_just_pressed("F11"):
         OS.window_fullscreen = !OS.window_fullscreen
         

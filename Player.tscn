@@ -2,9 +2,8 @@
 
 [ext_resource path="res://env.tres" type="Environment" id=1]
 
-[sub_resource type="CapsuleShape" id=1]
-radius = 1.03442
-height = 0.002
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.596566, 0.483823, 1.10979 )
 
 [sub_resource type="SphereMesh" id=2]
 
@@ -22,15 +21,16 @@ emission_on_uv2 = false
 [node name="Player" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50825, 0 )
 
-[node name="CollisionShape" type="CollisionShape" parent="."]
+[node name="Collider" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, -0.31415, 0 )
+visible = false
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 0.22209, 0 )
 environment = ExtResource( 1 )
 current = true
-far = 80.0
+far = 200.0
 
 [node name="RayCast" type="RayCast" parent="Camera"]
 enabled = true
@@ -60,5 +60,6 @@ margin_bottom = 350.0
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 0.161259, 0, 0, 0, -2.10911e-008, 0.482508, 0, -0.161259, -7.04887e-009, 0, -0.778654, 0 )
+visible = false
 mesh = SubResource( 5 )
 material/0 = null

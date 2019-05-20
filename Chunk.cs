@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,16 +39,22 @@ namespace NeuesSpielc
 
         private Vector2 GetTexCoords(int bt, int side, int vertX, int vertY)
         {
-            float ts = 8;
-            float t = 1 / ts;
-            float o = 0;
+            float ts = 16.0f;
+            float t = 1.0f / ts;
+            float tx = 1.0f / 6.0f;
+            float ty = 1.0f / 20.0f;
+            float o = 0.0f;
+            
+            //if (vertY==0) vertY=1; else vertY=0;
 
             Vector2 res = new Vector2(0, 0);
-            res.x = t * (side + vertX);
-            res.y = t * (bt-1+vertY);
+            res.x = tx * (side + vertX);
+            res.y = ty * (bt-1+(1-vertY));
+            
+            if (side==3){float tmp=res.x;res.x=res.y;res.y=tmp;}
 
-            return new Vector2(vertX, vertY);
-            //return res;
+            //return new Vector2(vertX, vertY);
+            return res;
         }
 
             SurfaceTool st = new SurfaceTool();

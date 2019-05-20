@@ -32,10 +32,19 @@ namespace NeuesSpielc
         }
 
         public static int GetBlock(int x, int y, int z)
-        {
+        {			
             int res = 0;
             float r = HeightAt(x, z);
-            if (y < r || y <= 0) res = 1;
+            if (y < r || y <= 0)
+            {
+                if (y > Height / 2) res = 1; else res = 2;
+            }
+            
+
+            //float r=(noise.GetNoise3d(x*Stretch, y*Stretch, z*Stretch)+1)/2;
+			//int res=(int)Math.Round(r);
+			//if (y<2 || y>2*Height-2) res=1;
+
             return res;
         }
     }
