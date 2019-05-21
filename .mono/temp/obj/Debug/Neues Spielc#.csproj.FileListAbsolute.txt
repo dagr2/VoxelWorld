@@ -9,4 +9,4 @@ C:\Users\Daniel\src\VoxelWorld\.mono\temp\bin\Debug\Neues Spielc#.pdb
 C:\Users\Daniel\src\VoxelWorld\.mono\temp\obj\Debug\Neues Spielc#.csproj.CoreCompileInputs.cache
 C:\Users\Daniel\src\VoxelWorld\.mono\temp\obj\Debug\Neues Spielc#.dll
 C:\Users\Daniel\src\VoxelWorld\.mono\temp\obj\Debug\Neues Spielc#.pdb
-C:\Users\Daniel\src\VoxelWorld\.mono\temp\obj\Debug\Neues Spielc#.csprojAssemblyReference.cache
+C:\Users\Daniel\src\VoxelWorld\.mono\temp\obj\Debug\Neues Spielc#.csprojResolveAssemblyReference.cache

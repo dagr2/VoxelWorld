@@ -27,6 +27,17 @@ func _ready():
     get_parent_spatial().vischunks=VisibleChunks
     translation.y=2+ get_parent_spatial().HeightAt(translation.x,translation.z)
 
+func get_clicked_block():
+    var p=$Camera/RayCast.get_collision_point()
+    var n=$Camera/RayCast.get_collision_normal()
+    var p2=p-n/2
+    var p3=Vector3(round(p2.x),round(p2.y),round(p2.z))
+    var chunk = $Camera/RayCast.get_collider()    
+    var res={}
+    res.Chunk=chunk
+    res.Block=p3
+    return res
+    
 func _input(event):
     if active and event is InputEventMouseMotion:
         var dx=event.relative.x
@@ -42,15 +53,12 @@ func _input(event):
         
     if event is InputEventMouseButton and event.pressed and event.button_index == 1:
         if $Camera/RayCast.is_colliding():
-            var p=$Camera/RayCast.get_collision_point()
-            var n=$Camera/RayCast.get_collision_normal()
-            var p2=p-n/2
-            var p3=Vector3(round(p2.x),round(p2.y),round(p2.z))
-            var chunk = $Camera/RayCast.get_collider()
+            var res=get_clicked_block()
+            var p3=res.Block
+            var chunk = res.Chunk
             
             chunk.SetBlock(p3.x,p3.y,p3.z,0)
-            print(chunk.GetBlock(p3.x,p3.y,p3.z))
-            print(chunk.mesh_ready)
+            
             #print(p2)
             
         

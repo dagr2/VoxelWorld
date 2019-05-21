@@ -3,7 +3,7 @@ using NeuesSpielc;
 using System;
 using System.Collections.Generic;
 
-public class Spatial : Godot.Spatial
+public class World : Godot.Spatial
 {
     Dictionary<string,Chunk> chunks=new Dictionary<string,Chunk>();
     SpatialMaterial mat = (SpatialMaterial)ResourceLoader.Load("res://mat1.tres");
@@ -117,6 +117,17 @@ public class Spatial : Godot.Spatial
             if (c.mesh_ready)
                 if (!GetChildren().Contains(c)) AddChild(c);
         }
+    }
+
+    public void GetBlock(int x,int y,int z, int v)
+    {
+
+    }
+
+    public int GetBlock(int x,int y,int z)
+    {
+        return 0;
+
     }
 
     public void AddChunk(int x, int y)

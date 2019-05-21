@@ -52,7 +52,7 @@
     <Compile Include="Chunk.cs" />
     <Compile Include="IsoSurface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Spatial.cs" />
+    <Compile Include="World.cs" />
     <Compile Include="WorldGenerator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

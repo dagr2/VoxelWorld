@@ -292,7 +292,7 @@ namespace NeuesSpielc
                 ccs.SetFaces(faces.ToArray());
             } catch(Exception ex)
             {
-                Spatial.log(ex.Message);
+                World.log(ex.Message);
             }
             mesh_ready = true;
         }
