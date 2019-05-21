@@ -5,4 +5,7 @@
 [resource]
 params_diffuse_mode = 3
 albedo_texture = ExtResource( 1 )
-metallic_specular = 0.0
+ao_enabled = true
+ao_light_affect = 0.04
+ao_on_uv2 = false
+ao_texture_channel = 0

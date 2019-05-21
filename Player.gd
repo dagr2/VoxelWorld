@@ -66,6 +66,10 @@ func _input(event):
 var can_collide=false       
     
 func _process(delta):
+    if $Camera/RayCast.is_colliding():
+        var t=get_parent().get_node("Target")
+        t.translation=$Camera/RayCast.get_collision_point()
+        
     is_sprinting=false
     dir=Vector3(0,0,1).rotated(Vector3(1,0,0),0)
     dir=dir.rotated(Vector3(0,1,0),pitch)

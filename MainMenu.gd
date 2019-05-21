@@ -16,7 +16,7 @@ func _process(delta):
         OS.window_fullscreen = !OS.window_fullscreen
 
 func _on_BtnStart_pressed():
-    get_tree().change_scene("res://Spatial.tscn")
+    get_tree().change_scene("res://World.tscn")
 
 
 func _on_Button_pressed():

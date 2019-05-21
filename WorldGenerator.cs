@@ -15,6 +15,13 @@ namespace NeuesSpielc
             Lacunarity=1,
             Persistence=1
         };
+        private static Godot.OpenSimplexNoise noise2 = new Godot.OpenSimplexNoise() {
+            Octaves=4,
+            Period=2,
+            Seed=0,
+            Lacunarity=1,
+            Persistence=1
+        };
         private static int HEIGHT = 128;
         public static int Height { get{ return HEIGHT; } set { HEIGHT = value; } }
         public static float Stretch { get; set; } = 0.1f;
@@ -34,11 +41,15 @@ namespace NeuesSpielc
         public static int GetBlock(int x, int y, int z)
         {			
             int res = 0;
-
-            float r = HeightAt(x, z);
+            
+            float r = (float)Math.Round(HeightAt(x, z));
             if (y < r || y <= 0)
-            {
-                if (y > Height / 2) res = 1; else res = 2;
+            {                
+                if (y==(int)r) {
+                    float n=noise2.GetNoise2d(x,z);
+                    res = (int)Math.Round((n+1)/2 + 1 );
+                }
+                else res=1;
             }
 
 /*
