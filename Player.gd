@@ -41,7 +41,19 @@ func _input(event):
         rotation.y=pitch
         
     if event is InputEventMouseButton and event.pressed and event.button_index == 1:
-        print(hit)
+        if $Camera/RayCast.is_colliding():
+            var p=$Camera/RayCast.get_collision_point()
+            var n=$Camera/RayCast.get_collision_normal()
+            var p2=p-n/2
+            var p3=Vector3(round(p2.x),round(p2.y),round(p2.z))
+            var chunk = $Camera/RayCast.get_collider()
+            
+            chunk.SetBlock(p3.x,p3.y,p3.z,0)
+            print(chunk.GetBlock(p3.x,p3.y,p3.z))
+            print(chunk.mesh_ready)
+            #print(p2)
+            
+        
           
 var can_collide=false       
     
@@ -132,10 +144,9 @@ func _process(delta):
         vel =vel#*0.8#-= dir*0.1
     move_and_slide(vel+walk+fly,Vector3(0,1,0))            
     
-    var rc=$Camera/RayCast
-    rc.cast_to=dir
-    var hitpos=rc.get_collision_point()
-    var hitnorm=rc.get_collision_normal() 
+    
+func _physics_process(delta):
+    pass
 
 func get_hit():
     return hit

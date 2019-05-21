@@ -17,6 +17,7 @@ _global_script_class_icons={
 
 config/name="Neues Spielc#"
 run/main_scene="res://MainMenu.tscn"
+run/low_processor_mode=true
 boot_splash/image="res://game.PNG"
 config/icon="res://icon.png"
 
@@ -109,11 +110,6 @@ F11={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777254,"unicode":0,"echo":false,"script":null)
  ]
 }
-toggle_collision={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"unicode":0,"echo":false,"script":null)
- ]
-}
 
 [logging]
 
@@ -126,8 +122,4 @@ file_logging/enable_file_logging=true
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
-quality/reflections/high_quality_ggx=false
-quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"
-quality/dynamic_fonts/use_oversampling=false

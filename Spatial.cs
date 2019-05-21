@@ -7,7 +7,7 @@ public class Spatial : Godot.Spatial
 {
     Dictionary<string,Chunk> chunks=new Dictionary<string,Chunk>();
     SpatialMaterial mat = (SpatialMaterial)ResourceLoader.Load("res://mat1.tres");
-    public int vischunks = 3;
+    public int vischunks = 1;
     public int Height = 64;
 
     public float HeightAt(float x, float y)
