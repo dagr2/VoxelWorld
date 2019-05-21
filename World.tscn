@@ -78,3 +78,6 @@ text = "..."
 transform = Transform( 0.258723, 0, 0, 0, 0.258723, 0, 0, 0, 0.258723, 0, 0, -2.5296 )
 mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
+
+[node name="Viewport" type="Viewport" parent="."]
+size = Vector2( 320, 240 )
