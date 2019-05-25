@@ -12,6 +12,7 @@ public class World : Godot.Spatial
 
     public float HeightAt(float x, float y)
     {
+        return 1;
         return WorldGenerator.HeightAt(x, y);
     }
 
@@ -43,8 +44,7 @@ public class World : Godot.Spatial
 
     private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
     {
-        GD.PrintErr(e.ExceptionObject.ToString());
-        
+        GD.PrintErr(e.ExceptionObject.ToString());        
     }
 
     public static void log(string m)
