@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://env.tres" type="Environment" id=2]
+[ext_resource path="res://default_dirt.png" type="Texture" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.369036
-height = 1.59523
 
 [sub_resource type="SphereMesh" id=2]
 
@@ -25,18 +25,23 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50825, 0 )
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, -0.31415, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 0, 0, 0 )
 shape = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 1.04265, 0.30093 )
+transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0, 0.714977, 0.30093 )
 environment = ExtResource( 2 )
 current = true
 far = 200.0
 
 [node name="RayCast" type="RayCast" parent="Camera"]
 enabled = true
-cast_to = Vector3( 0, 0, -10 )
+cast_to = Vector3( 0, 0, -100 )
+collision_mask = 2
+
+[node name="Sprite" type="Sprite" parent="Camera"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 3 )
 
 [node name="Hitball" type="MeshInstance" parent="."]
 transform = Transform( 0.101777, 0, 0, 0, 0.101777, 0, 0, 0, 0.101777, 0, 0, 0 )
@@ -45,7 +50,7 @@ mesh = SubResource( 2 )
 material/0 = SubResource( 3 )
 
 [node name="Lamp" type="SpotLight" parent="."]
-transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, -0.586433, -0.137092, 0.358381 )
+transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, -0.413362, -0.137092, 0.358381 )
 light_energy = 0.0
 shadow_enabled = true
 spot_range = 100.0
@@ -59,6 +64,12 @@ margin_bottom = 130.0
 [node name="Label" type="Label" parent="Hud"]
 margin_right = 1024.0
 margin_bottom = 350.0
+
+[node name="Label2" type="Label" parent="Hud"]
+margin_left = 4.0
+margin_top = 80.0
+margin_right = 44.0
+margin_bottom = 94.0
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 transform = Transform( 0.161259, 0, 0, 0, -2.10911e-008, 0.482508, 0, -0.161259, -7.04887e-009, 0, -0.778654, 0 )

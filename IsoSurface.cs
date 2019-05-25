@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class IsoSurface : MeshInstance
 {
 
-
+    public static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
     const float RADIUS = 8.0f; // sphere radius
     public List<Vector3> vertices = new List<Vector3>();
     public List<int> indices = new List<int>();

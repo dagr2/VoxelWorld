@@ -8,6 +8,7 @@ namespace NeuesSpielc
 {
     class WorldGenerator
     {
+        public static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
         private static Godot.OpenSimplexNoise noise = new Godot.OpenSimplexNoise() {
             Octaves=4,
             Period=4,
@@ -28,8 +29,8 @@ namespace NeuesSpielc
 
         public static float HeightAt(int x, int y)
         {
-            float r = (1 + noise.GetNoise2d(x * Stretch, y * Stretch)) / 2 * Height;
-            return r;
+            float r = (1 + noise.GetNoise2d(x * Stretch, y * Stretch)) / 2 * (Height-1);
+            return 1;
         }
 
         public static float HeightAt(float x, float y)

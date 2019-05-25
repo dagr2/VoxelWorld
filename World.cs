@@ -5,14 +5,21 @@ using System.Collections.Generic;
 
 public class World : Godot.Spatial
 {
+    public static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
     Dictionary<string,Chunk> chunks=new Dictionary<string,Chunk>();
     SpatialMaterial mat = (SpatialMaterial)ResourceLoader.Load("res://mat1.tres");
     public int vischunks = 1;
     public int Height = 64;
+    public static bool log_on = true;
+
+    public World()
+    {
+        world = this;
+    }
 
     public float HeightAt(float x, float y)
     {
-        return 1;
+        return 8;
         return WorldGenerator.HeightAt(x, y);
     }
 
@@ -28,7 +35,6 @@ public class World : Godot.Spatial
         //AddChild(iso);
 
         //for (int y = -vischunks; y < vischunks+1; y++) for (int x = -vischunks; x < vischunks+1; x++) AddChunk(x, y);
-
         try
         {
             System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(CalcMeshes));
@@ -39,7 +45,10 @@ public class World : Godot.Spatial
         {
             GD.PrintErr(ex.Message);
         }
-
+        /*
+        Thread t = new Thread();
+        GD.Print(t.Start(this, "CalcMeshes"));
+        */
     }
 
     private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -49,33 +58,55 @@ public class World : Godot.Spatial
 
     public static void log(string m)
     {
-       // Console.WriteLine(m);
-        GD.Print(m);
+        // Console.WriteLine(m);
+        if (log_on) GD.Print(m);
     }
+    public static void log(params object[] o)
+    {
+        // Console.WriteLine(m);
+        if (log_on) GD.Print(o);
+    }
+    public static World world;
     private void TestAndCreateChunk(int x, int y)
     {
+        if (log_on)GD.Print("TestAndCreateChunk at ", x, ",", y);
         if (!chunks.ContainsKey(x + "," + y))
         {
             //log("Adding chunk " + x + "," + y);
-            AddChunk(x, y);
+            Chunk c=AddChunk(x, y);
+            WorldGenerator.Height = 10;
+            bool l = log_on;
+            log_on = false;
+            for (int px = 0; px < 16; px++) for (int pz = 0; pz < 16; pz++)
+                {
+                    float h = WorldGenerator.HeightAt(x*16 + px, y*16 + pz);
+                    for (int i = 0; i <= h; i++)
+                    {
+                        SetBlock(x*16 + px, i, y*16 + pz, 1);
+                    }
+                    //oct.SetValue(new Vector3(x + px, 14, y + pz), 1);
+                }
+            log_on = l;
         }
     }
     object lck=new object();
 
     public void CalcMeshes()
     {
+        //GD.Print("CalcMeshes");
         KinematicBody player = (KinematicBody)FindNode("Player");
         int ocx = 0;int ocy = 0;
         while (true)
         try {
+                System.Threading.Thread.Sleep(100);
             Vector3 ppos = player.Translation;
-            int cx = (int)Math.Round((ppos.x) / 16);
-            int cy = (int)Math.Round((ppos.z) / 16);
+            int cx = (int)Math.Truncate((ppos.x) / 16.0);
+            int cy = (int)Math.Truncate((ppos.z) / 16.0);
 
             if (ocx != cx || ocy != cy)
             {
-                GD.Print("player at chunk " + cx + "," + cy);
-            }
+// GD.Print("player at chunk " + cx + "," + cy);
+                }
             Label lbl = (Label)FindNode("Label");
             if (lbl != null) lbl.Text = "player at chunk " + cx + "," + cy;
 
@@ -119,24 +150,41 @@ public class World : Godot.Spatial
         }
     }
 
-    public void GetBlock(int x,int y,int z, int v)
-    {
-
-    }
-
     public int GetBlock(int x,int y,int z)
     {
-        return 0;
+        int res = 0;
+        if (y <= WorldGenerator.HeightAt(x, z)) res = 1;
 
+        int cx = (int)Math.Truncate(x / 16.0);
+        int cy = (int)Math.Truncate(z / 16.0);
+
+        if (chunks.ContainsKey(cx + "," + cy)) res= chunks[cx + "," + cy].GetBlock(x,y,z);
+        return res;
     }
 
-    public void AddChunk(int x, int y)
+    public void SetBlock(int x,int y,int z, int v)
     {
-        Chunk c = new Chunk(x, y);
+        int cx = (int)Math.Truncate(x / 16.0);
+        int cy = (int)Math.Truncate(z / 16.0);
+        if (!chunks.ContainsKey(cx + "," + cy)) AddChunk(cx, cy);
+        if (chunks.ContainsKey(cx + "," + cy))
+        {
+            Chunk c = chunks[cx + "," + cy];
+            c.SetBlock(x, y, z, v);
+        }
+        if (log_on) log("Set block at ", x, ",", y, ",", z);
+    }
+    public Chunk AddChunk(int x, int y)
+    {
+        bool l = log_on;
+        log_on = true;
+        Chunk c = new Chunk(16*x, 16*y);
         c.SetMaterial(mat);
         chunks[x + "," + y] = c;
-        c.Translate(new Vector3(x * 16 - 8, 0, y * 16 - 8));
-        
+        c.Translate(new Vector3(0 , 0, 0 ));
+        log("Added chunk ", x, ",", y, " at ", 16 * x , ",", 16 * y );
+        log_on = l;
+        return c;
         //AddChild(c);
     }
 }

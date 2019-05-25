@@ -6,7 +6,7 @@ export(float,.1,10) var Sprintspeed=1.0
 export(float,10,100) var Jumppower=20
 export(float,0.1,100) var Gravity = 0.5
 export(float,1,100) var MouseSens=1.0
-export(int,1,10) var VisibleChunks=3
+export(int,0,10) var VisibleChunks=3
 
 
 var SPEED = 10.0
@@ -20,12 +20,16 @@ var yaw=0
 var is_grav=true
 var is_flying=true
 var hit
+var world
 
 func _ready():
+    world=get_parent()
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     #OS.window_fullscreen =true
-    get_parent_spatial().vischunks=VisibleChunks
-    translation.y=2+ get_parent_spatial().HeightAt(translation.x,translation.z)
+    world.vischunks=VisibleChunks
+    translation.y=2+world.HeightAt(translation.x,translation.z)
+    var c=world.AddChunk(-1,-1)
+    world.SetBlock(-16,1,-16,1)
 
 func get_clicked_block():
     var p=$Camera/RayCast.get_collision_point()
@@ -36,6 +40,7 @@ func get_clicked_block():
     var res={}
     res.Chunk=chunk
     res.Block=p3
+    res.Norm=n
     return res
     
 func _input(event):
@@ -53,12 +58,22 @@ func _input(event):
         
     if event is InputEventMouseButton and event.pressed and event.button_index == 1:
         if $Camera/RayCast.is_colliding():
+            
+            var res=get_clicked_block()
+            var p3=res.Block+res.Norm
+            var chunk = res.Chunk
+            
+            get_parent().SetBlock(p3.x,p3.y,p3.z,2)
+            #chunk.CalcMesh();
+            #print(p2)
+    if event is InputEventMouseButton and event.pressed and event.button_index == 2:
+        if $Camera/RayCast.is_colliding():
             var res=get_clicked_block()
             var p3=res.Block
             var chunk = res.Chunk
             
             chunk.SetBlock(p3.x,p3.y,p3.z,0)
-            
+            #chunk.CalcMesh();
             #print(p2)
             
         
@@ -66,10 +81,14 @@ func _input(event):
 var can_collide=false       
     
 func _process(delta):
+    $Camera/Sprite.position=OS.window_size/2
+    var t=get_parent().get_node("Target")
     if $Camera/RayCast.is_colliding():
-        var t=get_parent().get_node("Target")
+        t.visible=true
         t.translation=$Camera/RayCast.get_collision_point()
-        
+        $Hud/Label2.text=str(get_clicked_block().Block)
+    else:
+        t.visible=false
     is_sprinting=false
     dir=Vector3(0,0,1).rotated(Vector3(1,0,0),0)
     dir=dir.rotated(Vector3(0,1,0),pitch)

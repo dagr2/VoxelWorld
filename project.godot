@@ -17,10 +17,12 @@ _global_script_class_icons={
 
 config/name="Neues Spielc#"
 run/main_scene="res://MainMenu.tscn"
+run/disable_stderr=true
 config/use_custom_user_dir=true
 config/custom_user_dir_name=".VoxelWorld"
 config/project_settings_override="user://.project_settings.cfg"
 boot_splash/image="res://game.PNG"
+boot_splash/fullsize=false
 config/icon="res://icon.png"
 
 [debug]

@@ -14,6 +14,8 @@ func _ready():
 func _process(delta):   
     if Input.is_action_just_pressed("F11"):
         OS.window_fullscreen = !OS.window_fullscreen
+    if Input.is_action_just_pressed("ui_cancel"):
+        get_tree().quit()
 
 func _on_BtnStart_pressed():
     get_tree().change_scene("res://World.tscn")
