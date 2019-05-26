@@ -23,8 +23,63 @@ namespace NeuesSpielc
 
         public int GetBlock(int x, int y, int z)
         {
-            //return WorldGenerator.GetBlock(x ,y,z);
             return oct.GetValue(new Vector3(x, y, z));
+        }
+
+        public void RenderOctree()
+        {
+            //RenderSubtree(oct);
+        }
+
+        private void RenderSubtree(Octet o)
+        {
+            SurfaceTool s = new SurfaceTool();
+            s.Begin(Mesh.PrimitiveType.Lines);
+            Vector3 of = new Vector3(-0.5f, -0.5f, -0.5f);
+
+            s.AddVertex(o.Position + new Vector3(0 * o.Size.x, 0 * o.Size.y, 0 * o.Size.z)+of);
+            s.AddVertex(o.Position + new Vector3(1 * o.Size.x, 0 * o.Size.y, 0 * o.Size.z) + of);
+
+            s.AddVertex(o.Position + new Vector3(1 * o.Size.x, 0 * o.Size.y, 0 * o.Size.z) + of);
+            s.AddVertex(o.Position + new Vector3(1 * o.Size.x, 0 * o.Size.y, 1 * o.Size.z) + of);
+
+            s.AddVertex(o.Position + new Vector3(1 * o.Size.x, 0 * o.Size.y, 1 * o.Size.z) + of);
+            s.AddVertex(o.Position + new Vector3(0 * o.Size.x, 0 * o.Size.y, 1 * o.Size.z) + of);
+
+            s.AddVertex(o.Position + new Vector3(0 * o.Size.x, 0 * o.Size.y, 1 * o.Size.z) + of);
+            s.AddVertex(o.Position + new Vector3(0 * o.Size.x, 0 * o.Size.y, 0 * o.Size.z) + of);
+
+
+
+            s.AddVertex(o.Position + new Vector3(0 * o.Size.x, 1 * o.Size.y, 0 * o.Size.z) + of);
+            s.AddVertex(o.Position + new Vector3(1 * o.Size.x, 1 * o.Size.y, 0 * o.Size.z) + of);
+
+            s.AddVertex(o.Position + new Vector3(1 * o.Size.x, 1 * o.Size.y, 0 * o.Size.z) + of);
+            s.AddVertex(o.Position + new Vector3(1 * o.Size.x, 1 * o.Size.y, 1 * o.Size.z) + of);
+
+            s.AddVertex(o.Position + new Vector3(1 * o.Size.x, 1 * o.Size.y, 1 * o.Size.z) + of);
+            s.AddVertex(o.Position + new Vector3(0 * o.Size.x, 1 * o.Size.y, 1 * o.Size.z) + of);
+
+            s.AddVertex(o.Position + new Vector3(0 * o.Size.x, 1 * o.Size.y, 1 * o.Size.z) + of);
+            s.AddVertex(o.Position + new Vector3(0 * o.Size.x, 1 * o.Size.y, 0 * o.Size.z) + of);
+
+
+            s.AddVertex(o.Position + new Vector3(0 * o.Size.x, 0 * o.Size.y, 0 * o.Size.z) + of);
+            s.AddVertex(o.Position + new Vector3(0 * o.Size.x, 1 * o.Size.y, 0 * o.Size.z) + of);
+
+            s.AddVertex(o.Position + new Vector3(1 * o.Size.x, 0 * o.Size.y, 0 * o.Size.z) + of);
+            s.AddVertex(o.Position + new Vector3(1 * o.Size.x, 1 * o.Size.y, 0 * o.Size.z) + of);
+
+            s.AddVertex(o.Position + new Vector3(1 * o.Size.x, 0 * o.Size.y, 1 * o.Size.z) + of);
+            s.AddVertex(o.Position + new Vector3(1 * o.Size.x, 1 * o.Size.y, 1 * o.Size.z) + of);
+
+            s.AddVertex(o.Position + new Vector3(0 * o.Size.x, 0 * o.Size.y, 1 * o.Size.z) + of);
+            s.AddVertex(o.Position + new Vector3(0 * o.Size.x, 1 * o.Size.y, 1 * o.Size.z) + of);
+
+
+            mi.Mesh = s.Commit((ArrayMesh)mi.Mesh);
+
+            foreach (Octet so in o.GetChilds()) RenderSubtree(so);
         }
 
         public void SetBlock(int x, int y, int z, int v)
@@ -32,14 +87,12 @@ namespace NeuesSpielc
             mesh_ready = false;
             oct.SetValue(new Vector3(x, y, z), v);
             dirty = true;
-            //blocks[x + "," + y + "," + z] = v;
-            ////mesh_ready = false;
-            //GD.Print(String.Format("Setting block at {0},{1},{2} to {3}", x, y, z, v));
-            //CalcMesh();
+
         }
 
         public Chunk(int x, int y)
         {
+            logger.Debug("Creating chunk at {0},{1}", x, y);
             _x = x;_y = y;
             oct = new Octet(new Vector3(x, 0, y), new Vector3(16, 16, 16));
             mi = new MeshInstance();
@@ -49,10 +102,6 @@ namespace NeuesSpielc
             ccs = new ConcavePolygonShape();
             cs.SetShape(ccs);
             AddChild(cs);
-
-            //for (int i=0;i<16;i++) oct.SetValue(new Vector3(x+i, 0, y+i), 1);
-            //oct.SetValue(new Vector3(15, 0, 15), 1);
-            //CalcMesh();
         }
 
         public override void _Ready() {
@@ -288,6 +337,7 @@ namespace NeuesSpielc
             }
             st.GenerateNormals();
             mi.Mesh = st.Commit();
+            RenderOctree();
             try
             {
                 //ccs.SetFaces(mi.Mesh.GetFaces());

@@ -10,3 +10,6 @@ C:\Users\Daniel\src\VoxelWorld\.mono\temp\obj\Debug\Neues Spielc#.csproj.CoreCom
 C:\Users\Daniel\src\VoxelWorld\.mono\temp\obj\Debug\Neues Spielc#.dll
 C:\Users\Daniel\src\VoxelWorld\.mono\temp\obj\Debug\Neues Spielc#.pdb
 C:\Users\Daniel\src\VoxelWorld\.mono\temp\obj\Debug\Neues Spielc#.csprojResolveAssemblyReference.cache
+C:\Users\Daniel\src\VoxelWorld\.mono\temp\bin\Debug\NLog.config
+C:\Users\Daniel\src\VoxelWorld\.mono\temp\bin\Debug\NLog.dll
+C:\Users\Daniel\src\VoxelWorld\.mono\temp\bin\Debug\NLog.xml

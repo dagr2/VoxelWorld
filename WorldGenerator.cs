@@ -30,7 +30,7 @@ namespace NeuesSpielc
         public static float HeightAt(int x, int y)
         {
             float r = (1 + noise.GetNoise2d(x * Stretch, y * Stretch)) / 2 * (Height-1);
-            return 1;
+            return 5;
         }
 
         public static float HeightAt(float x, float y)

@@ -30,7 +30,7 @@ public class World : Godot.Spatial
         WorldGenerator.Height = Height;
         WorldGenerator.Stretch = 0.09f;
         KinematicBody player = (KinematicBody)FindNode("Player");
-
+        
         //IsoSurface iso=new IsoSurface();
         //AddChild(iso);
 
@@ -53,23 +53,25 @@ public class World : Godot.Spatial
 
     private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
     {
-        GD.PrintErr(e.ExceptionObject.ToString());        
+        logger.Error("Exception! {0}", e);
     }
 
     public static void log(string m)
     {
         // Console.WriteLine(m);
-        if (log_on) GD.Print(m);
+        //if (log_on) GD.Print(m);
     }
     public static void log(params object[] o)
     {
         // Console.WriteLine(m);
-        if (log_on) GD.Print(o);
+        //if (log_on) GD.Print(o);
+        logger.Debug(o);
     }
+    public void Debug(string s) { logger.Debug(s); }
     public static World world;
     private void TestAndCreateChunk(int x, int y)
     {
-        if (log_on)GD.Print("TestAndCreateChunk at ", x, ",", y);
+        logger.Trace("TestAndCreateChunk at {0},{1} ", x, y);
         if (!chunks.ContainsKey(x + "," + y))
         {
             //log("Adding chunk " + x + "," + y);
@@ -164,26 +166,34 @@ public class World : Godot.Spatial
 
     public void SetBlock(int x,int y,int z, int v)
     {
-        int cx = (int)Math.Truncate(x / 16.0);
-        int cy = (int)Math.Truncate(z / 16.0);
+        int cx = (int)Math.Truncate(x / 16.0f);
+        int cy = (int)Math.Truncate(z / 16.0f);
+        if (z<0 && z%16!=0) cy-=1;
+        if (x<0 && x%16!=0) cx-=1;
+        //if (cx<0)x+=1; if (cy<0)z+=1;
+        logger.Info("Set block at {0},{1},{2} with cx={3} and cy={4}", x, y, z,cx,cy);
+
         if (!chunks.ContainsKey(cx + "," + cy)) AddChunk(cx, cy);
         if (chunks.ContainsKey(cx + "," + cy))
         {
             Chunk c = chunks[cx + "," + cy];
             c.SetBlock(x, y, z, v);
         }
-        if (log_on) log("Set block at ", x, ",", y, ",", z);
+        
     }
     public Chunk AddChunk(int x, int y)
     {
+        float cx = x * 16.0f;float cy = y * 16.0f;
+        int icx = (int)Math.Truncate(cx); int icy = (int)Math.Truncate(cy);
+        //if (x < 0) icx++; if (y < 0) icy++;
+        logger.Debug("Adding Chunk {x},{y} at {icx},{icy} (cx={cx}, cy={cy})", x, y, icx,icy,cx,cy);
         bool l = log_on;
         log_on = true;
-        Chunk c = new Chunk(16*x, 16*y);
+        Chunk c = new Chunk(icx,icy);
         c.SetMaterial(mat);
         chunks[x + "," + y] = c;
         c.Translate(new Vector3(0 , 0, 0 ));
-        log("Added chunk ", x, ",", y, " at ", 16 * x , ",", 16 * y );
-        log_on = l;
+        //logger.Debug("Added Chunk at {0},{1}", x * 16, y * 16);
         return c;
         //AddChild(c);
     }

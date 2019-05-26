@@ -373,7 +373,7 @@ public class IsoSurface : MeshInstance
 
         Mesh = st.Commit();
 
-        GD.Print(vertices);
+        //GD.Print(vertices);
     }
 
 

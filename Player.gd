@@ -28,8 +28,15 @@ func _ready():
     #OS.window_fullscreen =true
     world.vischunks=VisibleChunks
     translation.y=2+world.HeightAt(translation.x,translation.z)
-    var c=world.AddChunk(-1,-1)
-    world.SetBlock(-16,1,-16,1)
+    #var c=world.AddChunk(-1,-1)
+    if false:
+        world.SetBlock(16,1,-15,1)
+        world.SetBlock(0,1,-15,1)
+        world.SetBlock(-15,1,-15,1)
+        world.SetBlock(-13,1,-15,1)
+    
+    #world.SetBlock(-15,1,-15,1)
+    #world.SetBlock(-15,1,-15,1)
 
 func get_clicked_block():
     var p=$Camera/RayCast.get_collision_point()
@@ -62,7 +69,7 @@ func _input(event):
             var res=get_clicked_block()
             var p3=res.Block+res.Norm
             var chunk = res.Chunk
-            
+            #world.Debug("Block="+str(res.Block)+", norm="+str(res.Norm))
             get_parent().SetBlock(p3.x,p3.y,p3.z,2)
             #chunk.CalcMesh();
             #print(p2)
@@ -76,7 +83,19 @@ func _input(event):
             #chunk.CalcMesh();
             #print(p2)
             
-        
+    if event is InputEventKey and event.is_pressed():
+        if Input.is_key_pressed(KEY_1):
+            world.SetBlock(0,2,0,2)
+            
+        if Input.is_key_pressed(KEY_0):
+            world.vischunks=3
+            
+        if Input.is_key_pressed(KEY_2):
+            world.SetBlock(0,2,-15,2)
+    
+        if Input.is_key_pressed(KEY_3):
+            world.SetBlock(0,2,-31,2)
+         
           
 var can_collide=false       
     
@@ -100,7 +119,8 @@ func _process(delta):
         
     if Input.is_action_pressed("sprint"):
         is_sprinting=true
-          
+
+         
     var speed=Walkspeed
     if is_sprinting:
         speed=Sprintspeed
