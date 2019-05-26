@@ -100,10 +100,12 @@ func _input(event):
 var can_collide=false       
     
 func _process(delta):
-    $Camera/Sprite.position=OS.window_size/2
+    $Camera/Cross.position=OS.window_size/2
+    $Camera/Cross.position=OS.window_size/2
     var t=get_parent().get_node("Target")
     if $Camera/RayCast.is_colliding():
         t.visible=true
+        t.rotation=Vector3(0,0,0)
         t.translation=$Camera/RayCast.get_collision_point()
         $Hud/Label2.text=str(get_clicked_block().Block)
     else:
