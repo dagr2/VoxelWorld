@@ -21,9 +21,14 @@ var is_grav=true
 var is_flying=true
 var hit
 var world
-
+var calc_thread
+    
 func _ready():
     world=get_parent()
+    #calc_thread=Thread.new()
+    #calc_thread.start(self,"CalcMeshes",0)
+    
+    
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
     #OS.window_fullscreen =true
     world.vischunks=VisibleChunks
@@ -37,7 +42,11 @@ func _ready():
     
     #world.SetBlock(-15,1,-15,1)
     #world.SetBlock(-15,1,-15,1)
-
+func calc_meshes(i):
+    GodotSharp.attach_thread()
+    world.CalcMeshes()
+    GodotSharp.detach_thread()
+    
 func get_clicked_block():
     var p=$Camera/RayCast.get_collision_point()
     var n=$Camera/RayCast.get_collision_normal()
@@ -100,8 +109,8 @@ func _input(event):
 var can_collide=false       
     
 func _process(delta):
-    $Camera/Cross.position=OS.window_size/2
-    $Camera/Cross.position=OS.window_size/2
+    #$Camera/Cross.position=Vector2(0,0)#OS.window_size/2
+    $Camera/Cross.position=OS.window_size/2.0
     var t=get_parent().get_node("Target")
     if $Camera/RayCast.is_colliding():
         t.visible=true
@@ -155,6 +164,7 @@ func _process(delta):
             
     if Input.is_action_pressed("ui_down"):
         walk = -speed*Vector3(dir.x,0,dir.z)*10
+
         
     if Input.is_action_pressed("ui_left"):
         pass

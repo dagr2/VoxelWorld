@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeuesSpielc
-{
+
     class WorldGenerator
     {
         public static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
@@ -61,4 +60,4 @@ namespace NeuesSpielc
             return res;
         }
     }
-}
+

@@ -5,8 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeuesSpielc
-{
+
     public class Chunk:StaticBody
     {
         public static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
@@ -570,4 +569,3 @@ namespace NeuesSpielc
         }
         
     }
-}

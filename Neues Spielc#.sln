@@ -1,29 +1,19 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neues Spielc#", "Neues Spielc#.csproj", "{13844DE6-D467-48D3-ABE3-D4E7A7A46DF0}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6EE4AA19-3F2D-4D26-A7A5-824BE374EE74}"
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Neues Spielc#", "Neues Spielc#.csproj", "{0643CE44-37FD-4DF5-B1FD-A7900DB3A838}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-		Tools|Any CPU = Tools|Any CPU
+	Debug|Any CPU = Debug|Any CPU
+	Release|Any CPU = Release|Any CPU
+	Tools|Any CPU = Tools|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{13844DE6-D467-48D3-ABE3-D4E7A7A46DF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13844DE6-D467-48D3-ABE3-D4E7A7A46DF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{13844DE6-D467-48D3-ABE3-D4E7A7A46DF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13844DE6-D467-48D3-ABE3-D4E7A7A46DF0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{13844DE6-D467-48D3-ABE3-D4E7A7A46DF0}.Tools|Any CPU.ActiveCfg = Tools|Any CPU
-		{13844DE6-D467-48D3-ABE3-D4E7A7A46DF0}.Tools|Any CPU.Build.0 = Tools|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2FE5E8EF-10CE-4CA6-A1EE-B8AE48E53C84}
+		{0643CE44-37FD-4DF5-B1FD-A7900DB3A838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0643CE44-37FD-4DF5-B1FD-A7900DB3A838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0643CE44-37FD-4DF5-B1FD-A7900DB3A838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0643CE44-37FD-4DF5-B1FD-A7900DB3A838}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0643CE44-37FD-4DF5-B1FD-A7900DB3A838}.Tools|Any CPU.ActiveCfg = Tools|Any CPU
+		{0643CE44-37FD-4DF5-B1FD-A7900DB3A838}.Tools|Any CPU.Build.0 = Tools|Any CPU
 	EndGlobalSection
 EndGlobal

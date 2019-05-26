@@ -10,7 +10,12 @@ C:\Users\Daniel\src\VoxelWorld\.mono\temp\obj\Tools\Neues Spielc#.csprojAssembly
 C:\Users\Daniel\src\VoxelWorld\.mono\temp\obj\Tools\Neues Spielc#.csproj.CoreCompileInputs.cache
 C:\Users\Daniel\src\VoxelWorld\.mono\temp\obj\Tools\Neues Spielc#.dll
 C:\Users\Daniel\src\VoxelWorld\.mono\temp\obj\Tools\Neues Spielc#.pdb
-C:\Users\Daniel\src\VoxelWorld\.mono\temp\bin\Tools\NLog.config
+C:\Users\Daniel\src\Godot\VoxelWorld\.mono\temp\bin\Tools\Neues Spielc#.dll
+C:\Users\Daniel\src\Godot\VoxelWorld\.mono\temp\bin\Tools\Neues Spielc#.pdb
+C:\Users\Daniel\src\Godot\VoxelWorld\.mono\temp\obj\Tools\Neues Spielc#.csprojAssemblyReference.cache
+C:\Users\Daniel\src\Godot\VoxelWorld\.mono\temp\obj\Tools\Neues Spielc#.csproj.CoreCompileInputs.cache
+C:\Users\Daniel\src\Godot\VoxelWorld\.mono\temp\obj\Tools\Neues Spielc#.dll
+C:\Users\Daniel\src\Godot\VoxelWorld\.mono\temp\obj\Tools\Neues Spielc#.pdb
 C:\Users\Daniel\src\VoxelWorld\.mono\temp\bin\Tools\NLog.dll
 C:\Users\Daniel\src\VoxelWorld\.mono\temp\bin\Tools\NLog.xml
 C:\Users\Daniel\src\VoxelWorld\.mono\temp\obj\Tools\Neues Spielc#.csproj.CopyComplete

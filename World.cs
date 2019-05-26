@@ -1,5 +1,5 @@
 using Godot;
-using NeuesSpielc;
+
 using System;
 using System.Collections.Generic;
 
@@ -30,25 +30,36 @@ public class World : Godot.Spatial
         WorldGenerator.Height = Height;
         WorldGenerator.Stretch = 0.09f;
         KinematicBody player = (KinematicBody)FindNode("Player");
-        
+
         //IsoSurface iso=new IsoSurface();
         //AddChild(iso);
 
-        //for (int y = -vischunks; y < vischunks+1; y++) for (int x = -vischunks; x < vischunks+1; x++) AddChunk(x, y);
+        //for (int y = -vischunks; y < vischunks + 1; y++) for (int x = -vischunks; x < vischunks + 1; x++) AddChunk(x, y);
+
         try
         {
             System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(CalcMeshes));
             t.Priority = System.Threading.ThreadPriority.Highest;
             t.Start();
-            
-        } catch (Exception ex)
+
+        }
+        catch (Exception ex)
         {
             GD.PrintErr(ex.Message);
         }
+
+        //Thread t = new Thread();
+        //t.Start(this,"CalcMeshes");
+
         /*
         Thread t = new Thread();
         GD.Print(t.Start(this, "CalcMeshes"));
         */
+    }
+
+    public void CalcMeshes(object o)
+    {
+        CalcMeshes();
     }
 
     private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
@@ -95,6 +106,8 @@ public class World : Godot.Spatial
 
     public void CalcMeshes()
     {
+        //GodotSharp.AttachThread();
+       // GodotSharp.AttachThread();
         //GD.Print("CalcMeshes");
         KinematicBody player = (KinematicBody)FindNode("Player");
         int ocx = 0;int ocy = 0;
@@ -135,6 +148,7 @@ public class World : Godot.Spatial
             }
                 AddChilds();
         } catch(Exception e) { GD.PrintErr(e); }
+        //GodotSharp.DetachThread();
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -148,7 +162,8 @@ public class World : Godot.Spatial
         foreach (Chunk c in chunks.Values)
         {
             if (c.mesh_ready)
-                if (!GetChildren().Contains(c)) AddChild(c);
+                if (!GetChildren().Contains(c)) CallDeferred( "add_child",c);
+                //if (!GetChildren().Contains(c)) AddChild(c);
         }
     }
 
