@@ -24,9 +24,10 @@ var world
 var calc_thread
     
 func _ready():
+    VisibleChunks =  get_node("/root/gvars").a
     world=get_parent()
-    #calc_thread=Thread.new()
-    #calc_thread.start(self,"CalcMeshes",0)
+    calc_thread=Thread.new()
+    calc_thread.start(self,"calc_meshes",0)
     
     
     Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -147,7 +148,7 @@ func _process(delta):
         OS.window_fullscreen = !OS.window_fullscreen
         
     if Input.is_action_just_pressed("F1"):
-        get_parent().AddChilds()
+        $pop.popup_centered_ratio(.5)
             
     if Input.is_action_just_pressed("gravity"):
         is_grav = !is_grav

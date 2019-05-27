@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://game.PNG" type="Texture" id=2]
+[ext_resource path="res://pop.tscn" type="PackedScene" id=3]
 
 [node name="MainMenu" type="Control"]
 use_parent_material = true
@@ -46,19 +47,29 @@ margin_bottom = 514.0
 
 [node name="Button" type="Button" parent="."]
 margin_left = 440.0
-margin_top = 250.0
+margin_top = 410.0
 margin_right = 620.0
-margin_bottom = 320.0
+margin_bottom = 480.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "Exit Game"
 
 [node name="Button2" type="Button" parent="."]
 margin_left = 440.0
-margin_top = 330.0
+margin_top = 360.0
 margin_right = 620.0
-margin_bottom = 370.0
+margin_bottom = 400.0
 text = "Toggle fullscreen"
+
+[node name="Button3" type="Button" parent="."]
+margin_left = 440.0
+margin_top = 240.0
+margin_right = 620.0
+margin_bottom = 280.0
+text = "Settings"
+
+[node name="pop" parent="." instance=ExtResource( 3 )]
 [connection signal="pressed" from="BtnStart" to="." method="_on_BtnStart_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_Button3_pressed"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://World.cs" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://PluginLoader.gd" type="Script" id=3]
-[ext_resource path="res://IngameMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://pop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://PluginLoader.gd" type="Script" id=4]
+[ext_resource path="res://IngameMenu.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -52,11 +53,15 @@ material/0 = SubResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
 Runspeed = 2.0
 Walkspeed = 0.4
+Sprintspeed = 4.572
 Jumppower = 12.0
+MouseSens = 2.0
 VisibleChunks = 5
 
 [node name="Position3D" type="Position3D" parent="Player"]
 transform = Transform( -1, 0, -8.74228e-008, 0, 1, 0, 8.74228e-008, 0, -1, 0.0256987, 0.714874, -2.13359 )
+
+[node name="pop" parent="Player" instance=ExtResource( 3 )]
 
 [node name="Hud" type="Control" parent="."]
 visible = false
@@ -70,9 +75,9 @@ text = "wawawdawdawd
 awdwadad"
 
 [node name="PluginLoader" type="Node" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
-[node name="IngameMenu" parent="." instance=ExtResource( 4 )]
+[node name="IngameMenu" parent="." instance=ExtResource( 5 )]
 visible = false
 
 [node name="Button" type="Button" parent="IngameMenu"]

@@ -30,23 +30,23 @@ public class World : Godot.Spatial
         WorldGenerator.Height = Height;
         WorldGenerator.Stretch = 0.09f;
         KinematicBody player = (KinematicBody)FindNode("Player");
-
+        //player.VisibleChunks=GetNode("root/gvars").a;
         //IsoSurface iso=new IsoSurface();
         //AddChild(iso);
 
         //for (int y = -vischunks; y < vischunks + 1; y++) for (int x = -vischunks; x < vischunks + 1; x++) AddChunk(x, y);
 
-        try
-        {
-            System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(CalcMeshes));
-            t.Priority = System.Threading.ThreadPriority.Highest;
-            t.Start();
+        //try
+        //{
+        //    System.Threading.Thread t = new System.Threading.Thread(new System.Threading.ThreadStart(CalcMeshes));
+        //    t.Priority = System.Threading.ThreadPriority.Highest;
+        //    t.Start();
 
-        }
-        catch (Exception ex)
-        {
-            GD.PrintErr(ex.Message);
-        }
+        //}
+        //catch (Exception ex)
+        //{
+        //    GD.PrintErr(ex.Message);
+        //}
 
         //Thread t = new Thread();
         //t.Start(this,"CalcMeshes");
